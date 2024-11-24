@@ -5,9 +5,9 @@
     "description": "An API to manage and retrieve information about products and orders for a store.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-project2-cmpr.onrender.com",
   "basePath": "/",
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
   "paths": {
     "/products/": {
       "get": {
