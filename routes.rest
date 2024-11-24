@@ -1,0 +1,70 @@
+// LOCALHOST
+### Get all contacts
+GET http://localhost:3000/contacts
+Accept: application/json
+
+### Get contact by ID
+GET http://localhost:3000/contacts/672c46c6f0bd65d918e85b8c
+Accept: application/json
+
+### Add a new contact
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "1990-01-01"
+}
+
+### Update a contact by ID
+PUT http://localhost:3000/contacts/672c46c6f0bd65d918e85b8c
+Content-Type: application/json
+
+{
+  "firstName": "Ben",
+  "lastName": "Robinson",
+  "email": "benrobinson@gmail.com",
+  "favoriteColor": "Green",
+  "birthday": "2003-11-01"
+}
+
+### Delete a contact by ID
+DELETE http://localhost:3000/contacts/672c46d6f0bd65d918e8a8dd
+
+// PRODUCTION
+### Get all contacts
+GET https://contacts-project-vezc.onrender.com/contacts
+
+### Get contacts by id
+GET https://contacts-project-vezc.onrender.com/contacts/672c46c6f0bd65d918e85b8c
+
+### Add a new contact
+POST https://contacts-project-vezc.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "_id": "672c46c6f0bd65d918e85b8d",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "1990-01-01"
+}
+
+### Update a contact by ID
+PUT https://contacts-project-vezc.onrender.com/contacts/672c46c6f0bd65d918e85b8c
+Content-Type: application/json
+
+{
+  "firstName": "Ben",
+  "lastName": "Robinson",
+  "email": "benrobinson@gmail.com",
+  "favoriteColor": "Green",
+  "birthday": "2003-11-01"
+}
+
+### Delete a contact by ID
+DELETE https://contacts-project-vezc.onrender.com/contacts/672c46c6f0bd65d918e85b8d

@@ -1,0 +1,210 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cse341 Shop API",
+    "description": "An API to manage and retrieve information about products and orders for a store.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http", "https"],
+  "paths": {
+    "/products/": {
+      "get": {
+        "tags": ["Products"],
+        "description": "Retrieve a list of all products.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "A list of products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          },
+          "404": {
+            "description": "Products not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Products"],
+        "description": "Create a new product.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Product created successfully",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "tags": ["Products"],
+        "description": "Retrieve a product by its ID.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the product to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Products"],
+        "description": "Update an existing product by its ID.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the product to update"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            },
+            "description": "Updated product information"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product updated successfully",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "400": {
+            "description": "Invalid ID or input"
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "description": "Delete a product by its ID.",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the product to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted successfully"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "required": ["name", "description", "price", "category", "stock"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Product Name",
+          "description": "Name of the product"
+        },
+        "description": {
+          "type": "string",
+          "example": "Product Description",
+          "description": "Description of the product"
+        },
+        "price": {
+          "type": "number",
+          "example": 25.99,
+          "description": "Price of the product"
+        },
+        "category": {
+          "type": "string",
+          "example": "Electronics",
+          "description": "Category of the product"
+        },
+        "stock": {
+          "type": "number",
+          "example": 100,
+          "description": "Stock quantity of the product"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2024-01-01T00:00:00Z",
+          "description": "The date when the product was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2024-01-01T00:00:00Z",
+          "description": "The date when the product was last updated"
+        }
+      }
+    }
+  }
+}
