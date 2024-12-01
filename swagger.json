@@ -103,7 +103,7 @@
           "schema": { "$ref": "#/definitions/Review" }
         }],
         "responses": {
-          "201": { "description": "Product created successfully." },
+          "201": { "description": "Review created successfully." },
           "400": { "description": "Invalid input data." },
           "401": { "description": "Unauthorized access." },
           "500": { "description": "Internal server error." }
