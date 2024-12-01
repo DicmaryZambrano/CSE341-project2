@@ -66,3 +66,62 @@ Content-Type: application/json
 ### Delete a product by ID
 DELETE https://cse341-project2-cmpr.onrender.com/products/6741458a99f52ed91886955d
 
+### Get all reviews for a product (Local)
+GET http://localhost:3000/reviews/6741458a99f52ed91886955d
+Accept: application/json
+
+### Get specific review by ID (Local)
+GET http://localhost:3000/reviews/6741458a99f52ed91886955d
+Accept: application/json
+
+### Add a new review (Local)
+POST http://localhost:3000/reviews
+Content-Type: application/json
+
+{
+  "productId": "6741458a99f52ed91886955d",
+  "rating": 4,
+  "comment": "Great product, but could be improved in terms of design."
+}
+
+### Update a review by ID (Local)
+PUT http://localhost:3000/reviews/6741458a99f52ed91886955d
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "comment": "Updated review: excellent product!"
+}
+
+### Delete a review by ID (Local)
+DELETE http://localhost:3000/reviews/6741458a99f52ed91886955d
+
+### Get all reviews for a product (Deployed API)
+GET https://cse341-project2-cmpr.onrender.com/reviews/6741458a99f52ed91886955d
+Accept: application/json
+
+### Get specific review by ID (Deployed API)
+GET https://cse341-project2-cmpr.onrender.com/reviews/6741458a99f52ed91886955d
+Accept: application/json
+
+### Add a new review (Deployed API)
+POST https://cse341-project2-cmpr.onrender.com/reviews
+Content-Type: application/json
+
+{
+  "productId": "6741458a99f52ed91886955d",
+  "rating": 4,
+  "comment": "Great product, but could be improved in terms of design."
+}
+
+### Update a review by ID (Deployed API)
+PUT https://cse341-project2-cmpr.onrender.com/reviews/6741458a99f52ed91886955d
+Content-Type: application/json
+
+{
+  "rating": 5,
+  "comment": "Updated review: excellent product!"
+}
+
+### Delete a review by ID (Deployed API)
+DELETE https://cse341-project2-cmpr.onrender.com/reviews/6741458a99f52ed91886955d
