@@ -69,6 +69,29 @@ const updateReviewValidation = [
       throw error;
     }
 
+    const filteredExistingProduct = Object.entries(existingReview.toObject())
+      .filter(([key]) => allowedFields.includes(key))
+      .reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {});
+
+    const filteredRequestBody = Object.entries(req.body)
+      .filter(([key]) => allowedFields.includes(key))
+      .reduce((acc, [key, value]) => {
+        acc[key] = value;
+        return acc;
+      }, {});
+
+    const isIdentical = Object.keys(filteredRequestBody).every(
+      (key) => filteredRequestBody[key] === filteredExistingProduct[key],
+    );
+
+    if (isIdentical) {
+      const error = new Error('No changes detected. Update request ignored.');
+      throw error;
+    }
+
     return true;
   }),
 
