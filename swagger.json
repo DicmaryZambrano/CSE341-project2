@@ -110,7 +110,7 @@
         }
       }
     },
-    "/reviews/{productId}": {
+    "/reviews/product/{productId}": {
       "get": {
         "description": "Retrieve all reviews for a product.",
         "parameters": [{ "name": "productId", "in": "path", "required": true, "type": "string" }],

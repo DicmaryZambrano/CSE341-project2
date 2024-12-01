@@ -57,7 +57,7 @@ reviewsController.getReviewById = async (req, res, next) => {
       new BaseError(
         'BadRequestError',
         httpStatusCodes.BAD_REQUEST,
-        'Invalid product ID or review ID format',
+        'Invalid review ID format',
       ),
     );
   }

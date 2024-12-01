@@ -10,7 +10,7 @@ const {
 
 // Route to get all reviews for a product
 router.get(
-  '/:productId',
+  '/product/:productId',
   requiresAuth(),
   reviewsController.getReviewsForProduct,
 );
