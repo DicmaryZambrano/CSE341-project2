@@ -93,6 +93,23 @@
         }
       }
     },
+    "/reviews/": {
+      "post": {
+        "description": "Create a new review.",
+        "parameters": [{
+          "in": "body",
+          "name": "review",
+          "required": true,
+          "schema": { "$ref": "#/definitions/Review" }
+        }],
+        "responses": {
+          "201": { "description": "Product created successfully." },
+          "400": { "description": "Invalid input data." },
+          "401": { "description": "Unauthorized access." },
+          "500": { "description": "Internal server error." }
+        }
+      }
+    },
     "/reviews/{productId}": {
       "get": {
         "description": "Retrieve all reviews for a product.",
