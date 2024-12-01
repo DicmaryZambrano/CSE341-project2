@@ -5,6 +5,8 @@ const httpStatusCodes = {
   NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
   UNPROCESSABLE_ENTITY: 422,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
 };
 
 module.exports = httpStatusCodes;

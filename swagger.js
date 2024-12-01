@@ -3,27 +3,17 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
   info: {
-    title: 'Cse341 Shop API',
+    title: 'CSE341 Shop API',
     description:
       'An API to manage and retrieve information about products and orders for a store.',
+    version: '1.0.0', // Added version for completeness
   },
-  host: 'shop-products-vezc.onrender.com',
-  basePath: '/',
-  schemes: ['https'],
-  definitions: {
-    Product: {
-      name: 'Product Name',
-      description: 'Product Description',
-      price: 25.99,
-      category: 'Electronics',
-      stock: 100,
-      createdAt: '2024-01-01T00:00:00Z',
-      updatedAt: '2024-01-01T00:00:00Z',
-    },
-  },
+  host: 'cse341-project2-cmpr.onrender.com', // Correct host URL
+  basePath: '/', // Base path remains '/'
+  schemes: ['https'], // Secure HTTPS connection
 };
 
-const outputFile = './swagger.json';
-const routes = ['./app.js'];
+const outputFile = './swagger.json'; // Output file path
+const routes = ['./app.js']; // Ensure this matches your route file(s)
 
 swaggerAutogen(outputFile, routes, doc);

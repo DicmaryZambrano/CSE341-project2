@@ -1,165 +1,159 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Cse341 Shop API",
+    "title": "CSE341 Shop API",
     "description": "An API to manage and retrieve information about products and orders for a store.",
     "version": "1.0.0"
   },
   "host": "cse341-project2-cmpr.onrender.com",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "paths": {
-    "/products/": {
+    "/api-docs": {
       "get": {
-        "tags": ["Products"],
-        "description": "Retrieve a list of all products.",
-        "produces": ["application/json"],
+        "description": "Retrieve Swagger API documentation.",
         "responses": {
           "200": {
-            "description": "A list of products",
+            "description": "Successful retrieval of API documentation."
+          },
+          "401": { "description": "Unauthorized access." },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/products/": {
+      "get": {
+        "description": "Retrieve a list of all products.",
+        "responses": {
+          "200": {
+            "description": "A list of products.",
             "schema": {
               "type": "array",
-              "items": {
-                "$ref": "#/definitions/Product"
-              }
+              "items": { "$ref": "#/definitions/Product" }
             }
           },
-          "404": {
-            "description": "Products not found"
-          },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal server error."
           }
         }
       },
       "post": {
-        "tags": ["Products"],
         "description": "Create a new product.",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          }
-        ],
-        "produces": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "product",
+          "required": true,
+          "schema": { "$ref": "#/definitions/Product" }
+        }],
         "responses": {
-          "201": {
-            "description": "Product created successfully",
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Product created successfully." },
+          "400": { "description": "Invalid input data." },
+          "401": { "description": "Unauthorized access." },
+          "500": { "description": "Internal server error." }
         }
       }
     },
     "/products/{productId}": {
       "get": {
-        "tags": ["Products"],
         "description": "Retrieve a product by its ID.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "ID of the product to retrieve"
-          }
-        ],
+        "parameters": [{ "name": "productId", "in": "path", "required": true, "type": "string" }],
         "responses": {
-          "200": {
-            "description": "Product found",
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Product not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Product details.", "schema": { "$ref": "#/definitions/Product" } },
+          "401": { "description": "Unauthorized access." },
+          "404": { "description": "Product not found." },
+          "500": { "description": "Internal server error." }
         }
       },
       "put": {
-        "tags": ["Products"],
-        "description": "Update an existing product by its ID.",
-        "produces": ["application/json"],
+        "description": "Update an existing product.",
         "parameters": [
-          {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "ID of the product to update"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Product"
-            },
-            "description": "Updated product information"
-          }
+          { "name": "productId", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "product", "required": true, "schema": { "$ref": "#/definitions/Product" } }
         ],
         "responses": {
-          "200": {
-            "description": "Product updated successfully",
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          "400": {
-            "description": "Invalid ID or input"
-          },
-          "404": {
-            "description": "Product not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Product updated successfully." },
+          "400": { "description": "Invalid input data." },
+          "401": { "description": "Unauthorized access." },
+          "404": { "description": "Product not found." },
+          "500": { "description": "Internal server error." }
         }
       },
       "delete": {
-        "tags": ["Products"],
         "description": "Delete a product by its ID.",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "ID of the product to delete"
-          }
-        ],
+        "parameters": [{ "name": "productId", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "200": { "description": "Product deleted successfully." },
+          "401": { "description": "Unauthorized access." },
+          "404": { "description": "Product not found." },
+          "500": { "description": "Internal server error." }
+        }
+      }
+    },
+    "/reviews/{productId}": {
+      "get": {
+        "description": "Retrieve all reviews for a product.",
+        "parameters": [{ "name": "productId", "in": "path", "required": true, "type": "string" }],
         "responses": {
           "200": {
-            "description": "Product deleted successfully"
+            "description": "A list of reviews.",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Review" }
+            }
           },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Product not found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "404": { "description": "Product not found." },
+          "401": { "description": "Unauthorized access." },
+          "500": { "description": "Internal server error." }
+        }
+      }
+    },
+    "/reviews/{reviewId}": {
+      "get": {
+        "description": "Retrieve a specific review by its ID.",
+        "parameters": [{ "name": "reviewId", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "200": { "description": "Review details.", "schema": { "$ref": "#/definitions/Review" } },
+          "401": { "description": "Unauthorized access." },
+          "404": { "description": "Review not found." },
+          "500": { "description": "Internal server error." }
+        }
+      },
+      "put": {
+        "description": "Update a review.",
+        "parameters": [
+          { "name": "reviewId", "in": "path", "required": true, "type": "string" },
+          { "in": "body", "name": "review", "required": true, "schema": { "$ref": "#/definitions/Review" } }
+        ],
+        "responses": {
+          "200": { "description": "Review updated successfully." },
+          "400": { "description": "Invalid input data." },
+          "401": { "description": "Unauthorized access." },
+          "404": { "description": "Review not found." },
+          "500": { "description": "Internal server error." }
+        }
+      },
+      "delete": {
+        "description": "Delete a review by its ID.",
+        "parameters": [{ "name": "reviewId", "in": "path", "required": true, "type": "string" }],
+        "responses": {
+          "200": { "description": "Review deleted successfully." },
+          "401": { "description": "Unauthorized access." },
+          "404": { "description": "Review not found." },
+          "500": { "description": "Internal server error." }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "description": "Retrieve the authenticated user's profile.",
+        "responses": {
+          "200": { "description": "Profile details." },
+          "401": { "description": "Unauthorized access." },
+          "500": { "description": "Internal server error." }
         }
       }
     }
@@ -167,44 +161,98 @@
   "definitions": {
     "Product": {
       "type": "object",
-      "required": ["name", "description", "price", "category", "stock"],
+      "required": [
+        "name",
+        "description",
+        "price",
+        "category",
+        "stock"
+      ],
       "properties": {
         "name": {
           "type": "string",
-          "example": "Product Name",
-          "description": "Name of the product"
+          "description": "Name of the product",
+          "example": "Product Name"
         },
         "description": {
           "type": "string",
-          "example": "Product Description",
-          "description": "Description of the product"
+          "description": "Description of the product",
+          "example": "Product Description"
         },
         "price": {
           "type": "number",
-          "example": 25.99,
-          "description": "Price of the product"
+          "description": "Price of the product",
+          "example": 25.99
         },
         "category": {
           "type": "string",
-          "example": "Electronics",
-          "description": "Category of the product"
+          "description": "Category of the product",
+          "example": "Electronics"
         },
         "stock": {
-          "type": "number",
-          "example": 100,
-          "description": "Stock quantity of the product"
+          "type": "integer",
+          "description": "Stock quantity of the product",
+          "example": 100
         },
         "createdAt": {
           "type": "string",
-          "example": "2024-01-01T00:00:00Z",
-          "description": "The date when the product was created"
+          "format": "date-time",
+          "description": "The date when the product was created",
+          "example": "2024-01-01T00:00:00Z"
         },
         "updatedAt": {
           "type": "string",
-          "example": "2024-01-01T00:00:00Z",
-          "description": "The date when the product was last updated"
+          "format": "date-time",
+          "description": "The date when the product was last updated",
+          "example": "2024-01-01T00:00:00Z"
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "required": [
+        "productId",
+        "rating",
+        "comment"
+      ],
+      "properties": {
+        "productId": {
+          "type": "string",
+          "description": "ID of the associated product",
+          "example": "609b8e74f1d2c45678901234"
+        },
+        "rating": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating given to the product",
+          "example": 4
+        },
+        "comment": {
+          "type": "string",
+          "description": "Review comment",
+          "example": "Great product!"
         }
       }
     }
-  }
+  },
+  "securityDefinitions": {
+    "OAuth2": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://dev-sl7geglcnoqm5270.us.auth0.com/authorize",
+      "scopes": {
+        "openid": "Access OpenID information",
+        "profile": "Access user profile"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "openid",
+        "profile"
+      ]
+    }
+  ]
 }

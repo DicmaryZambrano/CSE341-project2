@@ -30,7 +30,8 @@
     "express": "^4.21.1",
     "express-validator": "^7.2.0",
     "mongoose": "^8.8.2",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "express-openid-connect": "^2.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
