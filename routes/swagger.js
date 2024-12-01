@@ -6,7 +6,8 @@ const swaggerDocument = require('../swagger.json');
 // Custom Swagger UI options to include OAuth
 const swaggerOptions = {
   swaggerOptions: {
-    oauth2RedirectUrl: 'http://localhost:3000/api-docs/oauth2-redirect.html',
+    oauth2RedirectUrl:
+      'https://cse341-project2-cmpr.onrender.com/api-docs/oauth2-redirect.html',
     initOAuth: {
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.SECRET,
